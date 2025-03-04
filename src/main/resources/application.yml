@@ -8,9 +8,6 @@ spring:
   output:
     ansi:
       enabled: always
-  datasource:
-    hikari:
-      auto-commit: false
   jpa:
     hibernate:
       ddl-auto: update

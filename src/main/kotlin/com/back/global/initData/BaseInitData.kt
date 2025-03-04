@@ -1,15 +1,15 @@
 package com.back.global.initData
 
 import com.back.domain.post.post.service.PostService
-import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Lazy
+import org.springframework.transaction.annotation.Transactional
 
 @Configuration
-class BaseInitData (
+class BaseInitData(
     private val postService: PostService
 ) {
     @Autowired
@@ -21,6 +21,8 @@ class BaseInitData (
         return ApplicationRunner {
             self.work1()
             self.work2()
+            self.work3()
+            self.work4()
         }
     }
 
@@ -32,9 +34,20 @@ class BaseInitData (
         postService.write("title 2", "content 2")
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     fun work2() {
         postService.findAll()
             .forEach { println(it.id) }
+    }
+
+    @Transactional(readOnly = true)
+    fun work3() {
+        postService.findAll()
+            .forEach { println(it.id) }
+    }
+
+    @Transactional(readOnly = true)
+    fun work4() {
+        postService.findAll().forEach { println(it.id) }
     }
 }
