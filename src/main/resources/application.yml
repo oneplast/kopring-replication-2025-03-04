@@ -4,15 +4,11 @@ spring:
   application:
     name: kopring-replication-2025-03-04
   profiles:
-    active: dev
+    active: prod
   output:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:h2:./db_dev;MODE_MYSQL
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
     hikari:
       auto-commit: false
   jpa:
